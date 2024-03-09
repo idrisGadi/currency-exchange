@@ -1,7 +1,12 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, Dispatch, SetStateAction } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { currencies } from '../utils/currencies';
+
+interface CurrencySelectProp {
+  selected: Currency;
+  setSelected: Dispatch<SetStateAction<Currency>>;
+}
 
 interface Currency {
   code: string;
@@ -13,18 +18,7 @@ interface Currency {
   symbol_native: string;
 }
 
-const defaultCurrency = {
-  code: 'GBP',
-  name: 'British Pound Sterling',
-  decimal_digits: 2,
-  name_plural: 'British pounds sterling',
-  rounding: 0,
-  symbol: '£',
-  symbol_native: '£',
-};
-
-export const CurrencySelect: React.FC = () => {
-  const [selected, setSelected] = useState<Currency>(defaultCurrency);
+export const CurrencySelect: React.FC<CurrencySelectProp> = ({ selected, setSelected }) => {
   const [query, setQuery] = useState('');
 
   const filteredCurrency =
