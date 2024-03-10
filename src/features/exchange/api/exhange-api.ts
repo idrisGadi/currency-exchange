@@ -30,8 +30,8 @@ export const useExchangeRate = (baseValue: string) => {
   return useQuery({
     queryKey: ['exchangeRate', baseValue],
     queryFn: () => fetchExchangeRate({ baseCurrency: baseValue }),
-    // staleTime: 60 * 60 * 1000, // 1Hour
-    // gcTime: 60 * 60 * 1000, // 1Hour
+    staleTime: 60 * 60 * 1000, // 1Hour
+    gcTime: 60 * 60 * 1000, // 1Hour
     refetchOnWindowFocus: false,
   });
 };

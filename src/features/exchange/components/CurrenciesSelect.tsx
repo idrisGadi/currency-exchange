@@ -11,7 +11,7 @@ interface CurrenciesSelectProp {
 
 export const CurrenciesSelect: React.FC<CurrenciesSelectProp> = ({ selected, setSelected }) => {
   return (
-    <div className='w-fit max-w-52'>
+    <div className='w-full max-w-screen-md'>
       <Combobox
         value={selected}
         onChange={(currency) => setSelected(currency)}
