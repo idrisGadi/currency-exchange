@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 import { CurrencySelect } from './components/CurrencySelect';
+import { CurrenciesSelect } from './components/CurrenciesSelect';
 import { useExchangeRate } from './api/exhange-api';
-
-interface Currency {
-  code: string;
-  name: string;
-  decimal_digits: number;
-  name_plural: string;
-  rounding: number;
-  symbol: string;
-  symbol_native: string;
-}
+import { Currency } from './types';
 
 const defaultCurrency = {
   code: 'GBP',
@@ -22,9 +14,77 @@ const defaultCurrency = {
   symbol_native: '£',
 };
 
+const defaultCompareCurrencies = [
+  {
+    code: 'USD',
+    name: 'US Dollar',
+    decimal_digits: 2,
+    name_plural: 'US dollars',
+    rounding: 0,
+    symbol: '$',
+    symbol_native: '$',
+  },
+  {
+    code: 'EUR',
+    name: 'Euro',
+    decimal_digits: 2,
+    name_plural: 'Euros',
+    rounding: 0,
+    symbol: '€',
+    symbol_native: '€',
+  },
+  {
+    code: 'JPY',
+    name: 'Japanese Yen',
+    decimal_digits: 0,
+    name_plural: 'Japanese yen',
+    rounding: 0,
+    symbol: '¥',
+    symbol_native: '￥',
+  },
+  {
+    code: 'CHF',
+    name: 'Swiss Franc',
+    decimal_digits: 2,
+    name_plural: 'Swiss francs',
+    rounding: 0,
+    symbol: 'CHF',
+    symbol_native: 'CHF',
+  },
+  {
+    code: 'CAD',
+    name: 'Canadian Dollar',
+    decimal_digits: 2,
+    name_plural: 'Canadian dollars',
+    rounding: 0,
+    symbol: 'CA$',
+    symbol_native: '$',
+  },
+  {
+    code: 'AUD',
+    name: 'Australian Dollar',
+    decimal_digits: 2,
+    name_plural: 'Australian dollars',
+    rounding: 0,
+    symbol: 'AU$',
+    symbol_native: '$',
+  },
+  {
+    code: 'ZAR',
+    name: 'South African Rand',
+    decimal_digits: 2,
+    name_plural: 'South African rand',
+    rounding: 0,
+    symbol: 'R',
+    symbol_native: 'R',
+  },
+];
+
 export const Exchange: React.FC = () => {
-  const [selected, setSelected] = useState<Currency>(defaultCurrency);
-  const { data } = useExchangeRate(selected.code);
+  const [selectedBase, setSelectedBase] = useState<Currency>(defaultCurrency);
+  const [selectedCompare, setSelectedCompare] = useState<Currency[]>(defaultCompareCurrencies);
+  const [amount, setAmount] = useState(1);
+  const { data } = useExchangeRate(selectedBase.code);
   return (
     <div className='mx-auto flex w-full flex-col gap-10'>
       <div className='flex gap-4'>
@@ -32,12 +92,19 @@ export const Exchange: React.FC = () => {
           type='number'
           id='Quantity'
           inputMode='numeric'
-          value='1'
+          value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
           className='h-12 w-32 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm lg:text-lg [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none'
         />
         <CurrencySelect
-          selected={selected}
-          setSelected={setSelected}
+          selected={selectedBase}
+          setSelected={setSelectedBase}
+        />
+      </div>
+      <div>
+        <CurrenciesSelect
+          selected={selectedCompare}
+          setSelected={setSelectedCompare}
         />
       </div>
       <div className='overflow-x-auto'>
@@ -51,23 +118,19 @@ export const Exchange: React.FC = () => {
           </thead>
 
           <tbody className='divide-y divide-gray-200'>
-            <tr>
-              <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>$</td>
-              <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>USD</td>
-              <td className='whitespace-nowrap px-4 py-2 text-gray-700'>{data?.USD}</td>
-            </tr>
-
-            <tr>
-              <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>€</td>
-              <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>EUR</td>
-              <td className='whitespace-nowrap px-4 py-2 text-gray-700'>{data?.EUR}</td>
-            </tr>
-
-            <tr>
-              <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>¥</td>
-              <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>JPY</td>
-              <td className='whitespace-nowrap px-4 py-2 text-gray-700'>{data?.JPY}</td>
-            </tr>
+            {selectedCompare.map((currency) => (
+              <tr key={currency.code}>
+                <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+                  {currency.symbol}
+                </td>
+                <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+                  {currency.name}
+                </td>
+                <td className='whitespace-nowrap px-4 py-2 text-gray-700'>
+                  {data?.[currency.code] ? data?.[currency.code] * amount : ''}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

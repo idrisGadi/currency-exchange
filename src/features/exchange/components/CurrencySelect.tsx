@@ -2,20 +2,11 @@ import React, { useState, Fragment, Dispatch, SetStateAction } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { currencies } from '../utils/currencies';
+import { Currency } from '../types';
 
 interface CurrencySelectProp {
   selected: Currency;
   setSelected: Dispatch<SetStateAction<Currency>>;
-}
-
-interface Currency {
-  code: string;
-  name: string;
-  decimal_digits: number;
-  name_plural: string;
-  rounding: number;
-  symbol: string;
-  symbol_native: string;
 }
 
 export const CurrencySelect: React.FC<CurrencySelectProp> = ({ selected, setSelected }) => {
