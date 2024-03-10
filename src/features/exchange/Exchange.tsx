@@ -54,19 +54,19 @@ export const Exchange: React.FC = () => {
             <tr>
               <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>$</td>
               <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>USD</td>
-              <td className='whitespace-nowrap px-4 py-2 text-gray-700'>{data?.rates?.USD}</td>
+              <td className='whitespace-nowrap px-4 py-2 text-gray-700'>{data?.USD}</td>
             </tr>
 
             <tr>
               <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>€</td>
               <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>EUR</td>
-              <td className='whitespace-nowrap px-4 py-2 text-gray-700'>{data?.rates?.EUR}</td>
+              <td className='whitespace-nowrap px-4 py-2 text-gray-700'>{data?.EUR}</td>
             </tr>
 
             <tr>
               <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>¥</td>
               <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>JPY</td>
-              <td className='whitespace-nowrap px-4 py-2 text-gray-700'>{data?.rates?.JPY}</td>
+              <td className='whitespace-nowrap px-4 py-2 text-gray-700'>{data?.JPY}</td>
             </tr>
           </tbody>
         </table>
