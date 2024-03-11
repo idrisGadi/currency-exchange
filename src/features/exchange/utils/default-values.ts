@@ -1,75 +1,22 @@
-export const defaultCurrency = {
-  code: 'GBP',
-  name: 'British Pound Sterling',
-  decimal_digits: 2,
-  name_plural: 'British pounds sterling',
-  rounding: 0,
-  symbol: '£',
-  symbol_native: '£',
-};
+import { currencies } from './currencies';
+
+const indexOfGBP = currencies.findIndex((item) => item.code === 'GBP');
+const indexOfUSD = currencies.findIndex((item) => item.code === 'USD');
+const indexOfEUR = currencies.findIndex((item) => item.code === 'EUR');
+const indexOfJPY = currencies.findIndex((item) => item.code === 'JPY');
+const indexOfCHF = currencies.findIndex((item) => item.code === 'CHF');
+const indexOfCAD = currencies.findIndex((item) => item.code === 'CAD');
+const indexOfAUD = currencies.findIndex((item) => item.code === 'AUD');
+const indexOfZAR = currencies.findIndex((item) => item.code === 'ZAR');
+
+export const defaultCurrency = currencies[indexOfGBP];
 
 export const defaultCompareCurrencies = [
-  {
-    code: 'USD',
-    name: 'US Dollar',
-    decimal_digits: 2,
-    name_plural: 'US dollars',
-    rounding: 0,
-    symbol: '$',
-    symbol_native: '$',
-  },
-  {
-    code: 'EUR',
-    name: 'Euro',
-    decimal_digits: 2,
-    name_plural: 'Euros',
-    rounding: 0,
-    symbol: '€',
-    symbol_native: '€',
-  },
-  {
-    code: 'JPY',
-    name: 'Japanese Yen',
-    decimal_digits: 0,
-    name_plural: 'Japanese yen',
-    rounding: 0,
-    symbol: '¥',
-    symbol_native: '￥',
-  },
-  {
-    code: 'CHF',
-    name: 'Swiss Franc',
-    decimal_digits: 2,
-    name_plural: 'Swiss francs',
-    rounding: 0,
-    symbol: 'CHF',
-    symbol_native: 'CHF',
-  },
-  {
-    code: 'CAD',
-    name: 'Canadian Dollar',
-    decimal_digits: 2,
-    name_plural: 'Canadian dollars',
-    rounding: 0,
-    symbol: 'CA$',
-    symbol_native: '$',
-  },
-  {
-    code: 'AUD',
-    name: 'Australian Dollar',
-    decimal_digits: 2,
-    name_plural: 'Australian dollars',
-    rounding: 0,
-    symbol: 'AU$',
-    symbol_native: '$',
-  },
-  {
-    code: 'ZAR',
-    name: 'South African Rand',
-    decimal_digits: 2,
-    name_plural: 'South African rand',
-    rounding: 0,
-    symbol: 'R',
-    symbol_native: 'R',
-  },
+  currencies[indexOfUSD],
+  currencies[indexOfEUR],
+  currencies[indexOfJPY],
+  currencies[indexOfCHF],
+  currencies[indexOfCAD],
+  currencies[indexOfAUD],
+  currencies[indexOfZAR],
 ];
