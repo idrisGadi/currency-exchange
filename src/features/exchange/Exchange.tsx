@@ -40,8 +40,8 @@ export const Exchange: React.FC = () => {
             selectedBase={selectedBase}
           />
         </div>
-        <div className='overflow-x-auto'>
-          <table className='min-w-full divide-y-2 divide-gray-200 bg-white text-sm'>
+        <div className='overflow-x-auto rounded-lg border-transparent bg-white shadow-md'>
+          <table className='min-w-full divide-y-2 divide-gray-200 text-sm'>
             <thead className='text-left'>
               <tr>
                 <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>Symbol</th>
