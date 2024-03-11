@@ -9,10 +9,16 @@ interface ApiResponse {
   rates: Record<string, number>;
 }
 
-const fetchExchangeRate = async ({ baseCurrency }: { baseCurrency: string }) => {
+const fetchExchangeRate = async ({
+  baseCurrency,
+  date,
+}: {
+  baseCurrency: string;
+  date: string;
+}) => {
   try {
     const res: Response = await fetch(
-      `https://api.fxratesapi.com/latest?base=${baseCurrency}&resolution=1h&amount=1&format=json`,
+      `https://api.fxratesapi.com/latest?date=${date}&base=${baseCurrency}&resolution=1h&amount=1&format=json`,
     );
     if (!res.ok) {
       throw new Error('Network response was not ok');
@@ -25,10 +31,10 @@ const fetchExchangeRate = async ({ baseCurrency }: { baseCurrency: string }) => 
   }
 };
 
-export const useExchangeRate = (baseValue: string) => {
+export const useExchangeRate = (baseValue: string, date: string) => {
   return useQuery({
-    queryKey: ['exchangeRate', baseValue],
-    queryFn: () => fetchExchangeRate({ baseCurrency: baseValue }),
+    queryKey: ['exchangeRate', baseValue, date],
+    queryFn: () => fetchExchangeRate({ baseCurrency: baseValue, date }),
     staleTime: 60 * 60 * 1000, // 1Hour
     gcTime: 60 * 60 * 1000, // 1Hour
     refetchOnWindowFocus: false,

@@ -11,7 +11,7 @@ export const Exchange: React.FC = () => {
   const [selectedCompare, setSelectedCompare] = useState<Currency[]>(defaultCompareCurrencies);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [amount, setAmount] = useState(1);
-  const { data } = useExchangeRate(selectedBase.code);
+  const { data } = useExchangeRate(selectedBase.code, selectedDate);
   return (
     <div className='mx-auto flex w-full flex-col gap-10'>
       <div className='flex flex-wrap gap-4'>
