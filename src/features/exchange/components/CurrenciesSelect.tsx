@@ -19,12 +19,16 @@ export const CurrenciesSelect: React.FC<CurrenciesSelectProp> = ({
     <div className='w-full max-w-screen-md'>
       <Listbox
         value={selected}
-        onChange={(currency) => setSelected(currency)}
-        defaultValue={selected}
+        onChange={(currency) => {
+          if (currency.length < 3 || currency.length > 7) {
+            return;
+          }
+          setSelected(currency);
+        }}
         multiple
       >
         <div className='relative'>
-          <Listbox.Button className='relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm'>
+          <Listbox.Button className='relative min-h-12 w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm'>
             <span className='block truncate'>
               {selected.map((curreny) => curreny.code).join(', ')}
             </span>
