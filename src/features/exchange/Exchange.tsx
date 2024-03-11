@@ -21,7 +21,7 @@ export const Exchange: React.FC = () => {
           inputMode='numeric'
           value={amount}
           onChange={(e) => setAmount(Number(e.target.value))}
-          className='h-12 w-32 rounded-lg border-transparent text-center [-moz-appearance:_textfield] sm:text-sm lg:text-lg [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none'
+          className='h-12 w-32 rounded-lg border-transparent bg-white text-center shadow-md [-moz-appearance:_textfield] focus:ring-0 sm:text-sm lg:text-lg [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none'
         />
         <CurrencySelect
           selected={selectedBase}
@@ -32,43 +32,47 @@ export const Exchange: React.FC = () => {
           setSelectedDate={setSelectedDate}
         />
       </div>
-      <div>
-        <CurrenciesSelect
-          selected={selectedCompare}
-          setSelected={setSelectedCompare}
-          selectedBase={selectedBase}
-        />
-      </div>
-      <div className='overflow-x-auto'>
-        <table className='min-w-full divide-y-2 divide-gray-200 bg-white text-sm'>
-          <thead className='text-left'>
-            <tr>
-              <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>Symbol</th>
-              <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>Currency</th>
-              <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
-                {data
-                  ? new Intl.DateTimeFormat('en-GB').format(new Date(data.timestamp * 1000))
-                  : null}
-              </th>
-            </tr>
-          </thead>
-
-          <tbody className='divide-y divide-gray-200'>
-            {selectedCompare.map((currency) => (
-              <tr key={currency.code}>
-                <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
-                  {currency.symbol}
-                </td>
-                <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
-                  {currency.name}
-                </td>
-                <td className='whitespace-nowrap px-4 py-2 text-gray-700'>
-                  {data?.rates?.[currency.code] ? data?.rates?.[currency.code] * amount : ''}
-                </td>
+      <div className='flex flex-col gap-5'>
+        <div className='w-full xl:w-1/3'>
+          <CurrenciesSelect
+            selected={selectedCompare}
+            setSelected={setSelectedCompare}
+            selectedBase={selectedBase}
+          />
+        </div>
+        <div className='overflow-x-auto'>
+          <table className='min-w-full divide-y-2 divide-gray-200 bg-white text-sm'>
+            <thead className='text-left'>
+              <tr>
+                <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>Symbol</th>
+                <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>Currency</th>
+                <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+                  Exchange Rate(
+                  {data
+                    ? new Intl.DateTimeFormat('en-GB').format(new Date(data.timestamp * 1000))
+                    : null}
+                  )
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody className='divide-y divide-gray-200'>
+              {selectedCompare.map((currency) => (
+                <tr key={currency.code}>
+                  <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+                    {currency.symbol}
+                  </td>
+                  <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+                    {currency.name}
+                  </td>
+                  <td className='whitespace-nowrap px-4 py-2 text-gray-700'>
+                    {data?.rates?.[currency.code] ? data?.rates?.[currency.code] * amount : ''}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
