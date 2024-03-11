@@ -24,15 +24,15 @@ Simple currency exchange app build with React.
 
 ### Landing Page
 
-   <img src="./docs/assets/landing.png" alt="Landing Page" width="80%" height="auto" style='padding: 12px'>
+   <img src="./docs/assets/landing.png" alt="Landing Page" width="90%" height="auto" style='padding: 12px'>
 
 ### Select Base Currency
 
-  <img src="./docs/assets/landing-base.png" alt="Base currency select" width="80%" height="auto" style='padding: 12px'>
+  <img src="./docs/assets/landing-base.png" alt="Base currency select" width="90%" height="auto" style='padding: 12px'>
 
 ### Select Comparison Currencies
 
-  <img src="./docs/assets/landing-compare.png" alt="Compare currency select" width="80%" height="auto" style='padding: 12px'>
+  <img src="./docs/assets/landing-compare.png" alt="Compare currency select" width="90%" height="auto" style='padding: 12px'>
 
 ## Getting Started
 
