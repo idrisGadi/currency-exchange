@@ -1,30 +1,72 @@
-# React + TypeScript + Vite
+# Currency Exchange
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simple currency exchange app build with React.
 
-Currently, two official plugins are available:
+## Table of content
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Technologies](#technologies)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Typescript v5
+- React v18
+- Vite v5
+- TailwindCSS v3
+- HeadlessUI v1
+- TanStack Query v5
+- Prettier v3
+- ESLint v8
 
-- Configure the top-level `parserOptions` property like this:
+## Screenshots
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Landing Page
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+   <img src="./docs/assets/landing.png" alt="Landing Page" width="80%" height="auto" style='padding: 12px'>
+
+### Select Base Currency
+
+  <img src="./docs/assets/landing-base.png" alt="Base currency select" width="80%" height="auto" style='padding: 12px'>
+
+### Select Comparison Currencies
+
+  <img src="./docs/assets/landing-compare.png" alt="Compare currency select" width="80%" height="auto" style='padding: 12px'>
+
+## Getting Started
+
+### Prerequisites
+
+- Node >= 18.0
+- NPM >= 9
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:idrisGadi/currency-exchange.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd currency-exchange
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Usage
+
+1. Run locally:
+   ```bash
+   npm run dev
+   ```
+2. Build:
+   ```bash
+   npm run build
+   ```
+
+## License
+
+Currency Exchange is licensed under the [MIT License](./LICENSE).
