@@ -18,7 +18,7 @@ const fetchExchangeRate = async ({
 }) => {
   try {
     const res: Response = await fetch(
-      `https://api.fxratesapi.com/latest?date=${date}&base=${baseCurrency}&resolution=1h&amount=1&format=json`,
+      `${import.meta.env.VITE_FXRATE_API_BASE_URL}/historical?api_key=${import.meta.env.VITE_FXRATE_API_KEY}&date=${date}&base=${baseCurrency}&resolution=1h&amount=1&format=json`,
     );
     if (!res.ok) {
       throw new Error('Network response was not ok');
