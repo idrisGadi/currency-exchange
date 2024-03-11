@@ -36,6 +36,7 @@ export const Exchange: React.FC = () => {
         <CurrenciesSelect
           selected={selectedCompare}
           setSelected={setSelectedCompare}
+          selectedBase={selectedBase}
         />
       </div>
       <div className='overflow-x-auto'>

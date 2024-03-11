@@ -6,10 +6,15 @@ import { Currency } from '../types';
 
 interface CurrenciesSelectProp {
   selected: Currency[];
+  selectedBase: Currency;
   setSelected: Dispatch<SetStateAction<Currency[]>>;
 }
 
-export const CurrenciesSelect: React.FC<CurrenciesSelectProp> = ({ selected, setSelected }) => {
+export const CurrenciesSelect: React.FC<CurrenciesSelectProp> = ({
+  selected,
+  setSelected,
+  selectedBase,
+}) => {
   return (
     <div className='w-full max-w-screen-md'>
       <Listbox
@@ -40,6 +45,7 @@ export const CurrenciesSelect: React.FC<CurrenciesSelectProp> = ({ selected, set
               {currencies.map((currency) => (
                 <Listbox.Option
                   key={currency.code}
+                  disabled={currency === selectedBase}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active ? 'bg-teal-600 text-white' : 'text-gray-900'
@@ -47,10 +53,10 @@ export const CurrenciesSelect: React.FC<CurrenciesSelectProp> = ({ selected, set
                   }
                   value={currency}
                 >
-                  {({ active, selected }) => (
+                  {({ active, selected, disabled }) => (
                     <>
                       <span
-                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}
+                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'} ${disabled ? 'text-gray-400' : ''}`}
                       >
                         {currency.name}
                       </span>
