@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CurrencySelect } from './components/CurrencySelect';
 import { CurrenciesSelect } from './components/CurrenciesSelect';
+import { DatePicker } from './components/DatePicker';
 import { useExchangeRate } from './api/exhange-api';
 import { Currency } from './types';
 import { defaultCurrency, defaultCompareCurrencies } from './utils/default-values';
@@ -8,11 +9,12 @@ import { defaultCurrency, defaultCompareCurrencies } from './utils/default-value
 export const Exchange: React.FC = () => {
   const [selectedBase, setSelectedBase] = useState<Currency>(defaultCurrency);
   const [selectedCompare, setSelectedCompare] = useState<Currency[]>(defaultCompareCurrencies);
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [amount, setAmount] = useState(1);
   const { data } = useExchangeRate(selectedBase.code);
   return (
     <div className='mx-auto flex w-full flex-col gap-10'>
-      <div className='flex gap-4'>
+      <div className='flex flex-wrap gap-4'>
         <input
           type='number'
           id='Quantity'
@@ -24,6 +26,10 @@ export const Exchange: React.FC = () => {
         <CurrencySelect
           selected={selectedBase}
           setSelected={setSelectedBase}
+        />
+        <DatePicker
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
         />
       </div>
       <div>
