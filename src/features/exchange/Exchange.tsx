@@ -38,7 +38,11 @@ export const Exchange: React.FC = () => {
             <tr>
               <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>Symbol</th>
               <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>Currency</th>
-              <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>Date</th>
+              <th className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+                {data
+                  ? new Intl.DateTimeFormat('en-GB').format(new Date(data.timestamp * 1000))
+                  : null}
+              </th>
             </tr>
           </thead>
 
@@ -52,7 +56,7 @@ export const Exchange: React.FC = () => {
                   {currency.name}
                 </td>
                 <td className='whitespace-nowrap px-4 py-2 text-gray-700'>
-                  {data?.[currency.code] ? data?.[currency.code] * amount : ''}
+                  {data?.rates?.[currency.code] ? data?.rates?.[currency.code] * amount : ''}
                 </td>
               </tr>
             ))}

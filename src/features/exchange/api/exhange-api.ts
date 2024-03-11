@@ -19,8 +19,7 @@ const fetchExchangeRate = async ({ baseCurrency }: { baseCurrency: string }) => 
     }
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const data: ApiResponse = await res.json();
-    const rates = data.rates;
-    return rates;
+    return data;
   } catch (error) {
     console.error('fetch rate', error);
   }
