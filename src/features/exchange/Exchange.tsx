@@ -21,7 +21,7 @@ export const Exchange: React.FC = () => {
           inputMode='numeric'
           value={amount}
           onChange={(e) => setAmount(Number(e.target.value))}
-          className='h-12 w-32 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm lg:text-lg [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none'
+          className='h-12 w-32 rounded-lg border-transparent text-center [-moz-appearance:_textfield] sm:text-sm lg:text-lg [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none'
         />
         <CurrencySelect
           selected={selectedBase}
