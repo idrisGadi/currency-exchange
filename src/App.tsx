@@ -4,7 +4,7 @@ import { Exchange } from './features/exchange/Exchange';
 
 function App() {
   return (
-    <body className='mx-auto flex max-w-screen-xl flex-col gap-6 p-4 xl:p-0'>
+    <body className='mx-auto flex max-w-screen-xl flex-col gap-6 p-4 xl:p-0 xl:pb-6'>
       <header className='h-full w-full'>
         <Header />
       </header>

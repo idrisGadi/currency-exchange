@@ -5,6 +5,7 @@ import { DatePicker } from './components/DatePicker';
 import { useExchangeRate } from './api/exhange-api';
 import { Currency } from './types';
 import { defaultCurrency, defaultCompareCurrencies } from './utils/default-values';
+import { TimeSeriesChart } from './components/TimeSeriesChart';
 
 export const Exchange: React.FC = () => {
   const [selectedBase, setSelectedBase] = useState<Currency>(defaultCurrency);
@@ -72,6 +73,13 @@ export const Exchange: React.FC = () => {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className='h-full'>
+          <TimeSeriesChart
+            selectedBase={selectedBase}
+            selectedCompare={selectedCompare}
+            date={selectedDate}
+          />
         </div>
       </div>
     </div>
